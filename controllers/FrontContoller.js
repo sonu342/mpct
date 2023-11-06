@@ -26,7 +26,7 @@ class FrontController{
 static team = (req,res)=>{
  try {
     const {name,image} =req.data1
- res.render('About')
+ res.render('team')
  } catch(error) {
   console.log(error)            
    }                
@@ -44,7 +44,7 @@ static team = (req,res)=>{
  static contact= (req,res)=>{
   try {
     const {name,image} =req.data1
-   res.render('Contact')
+   res.render('contact')
    } catch(error) {
     console.log(error)            
     }                
