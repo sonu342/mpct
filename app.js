@@ -16,6 +16,7 @@ app.use(fileUpload({useTempFiles: true}));
 // data get 
 
 app.use(express.urlencoded({ extended: false }))
+
 app.use(session({
   secret: 'secret',
   cookie: {maxAge:60000},
@@ -23,14 +24,14 @@ app.use(session({
   saveUninitialized: false,
 
 }));
-
+app.use(flash());
 //cookies 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser())
  // insert CSS and img
  app.use(express.static('public'))
 
-app.use(flash());
+
 
   //route load
   app.use('/', web)
