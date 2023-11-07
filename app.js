@@ -9,11 +9,13 @@ const flash = require('connect-flash');
 const fileUpload = require("express-fileupload");
 // view engine
 app.set('view engine', 'EJS')
-
-// for file upload
-app.use(fileUpload({useTempFiles: true}));
 // connected to monodb
 connectDb()
+// for file upload
+app.use(fileUpload({useTempFiles: true}));
+// data get 
+
+app.use(express.urlencoded({ extended: false }))
 app.use(session({
   secret: 'secret',
   cookie: {maxAge:60000},
@@ -21,14 +23,13 @@ app.use(session({
   saveUninitialized: false,
 
 }));
+
 //cookies 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser())
  // insert CSS and img
  app.use(express.static('public'))
-// data get 
-// parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: false }))
+
 app.use(flash());
 
   //route load
