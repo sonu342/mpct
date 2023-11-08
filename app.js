@@ -1,22 +1,26 @@
-const express = require('express')
+const express = require("express")
 
-const app = express()
-const port = 3000
-const web = require('./routes/web')
-const connectDb = require('./db/connectDb')
-const session = require('express-session')
+const app = express();
+const port = 3000;
+const web = require('./routes/web');
+const connectDb = require('./db/connectDb');
+let session = require('express-session');
 
-const flash = require('connect-flash');
+let flash = require('connect-flash');
 const fileUpload = require("express-fileupload");
 // view engine
-app.set('view engine', 'EJS')
+app.set('view engine', 'EJS');
 // connected to monodb
-connectDb()
+connectDb();
+//cookies 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
 // for file upload
 app.use(fileUpload({useTempFiles: true}));
-// data get 
 
-app.use(express.urlencoded({ extended: false }))
+ // insert CSS and img
+ app.use(express.static('public'));
+
 
 
 
@@ -28,13 +32,14 @@ app.use(session({
 
 }));
 
-//cookies 
-const cookieParser = require('cookie-parser');
-app.use(cookieParser())
- // insert CSS and img
- app.use(express.static('public'))
+
+
 
 app.use(flash());
+// DATA GET
+// create application/x-www-form-urlencoded parser
+app.use(express.urlencoded({ extended: false }));
+
 
   //route load
   app.use('/', web)
