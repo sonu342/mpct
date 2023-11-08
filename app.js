@@ -4,9 +4,9 @@ const app = express();
 const port = 3000;
 const web = require('./routes/web');
 const connectDb = require('./db/connectDb');
-let session = require('express-session');
+const session = require('express-session');
 
-let flash = require('connect-flash');
+const flash = require('connect-flash');
 const fileUpload = require("express-fileupload");
 // view engine
 app.set('view engine', 'EJS');
