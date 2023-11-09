@@ -5,7 +5,7 @@ const port = 3000;
 const web = require('./routes/web');
 const connectDb = require('./db/connectDb');
 const session = require('express-session');
-const MemoryStore = require('memorystore')(session)
+const MemoryStore = require('memorystore');
 
 
 
