@@ -1,53 +1,41 @@
-const express = require("express");
 
+const express = require("express");
+const cookieparser = require('cookie-parser')
+const fileUpload = require("express-fileupload");
+const web = require("./routes/web");
+const connectDb = require("./db/connectDb");
 const app = express();
 const port = 3000;
-const web = require('./routes/web');
-const connectDb = require('./db/connectDb');
-const session = require('express-session');
-const MemoryStore = require('memorystore')(session)
 
+let session = require('express-session')
+let flash = require('connect-flash');
 
+app.set("view engine", "ejs"); // FOR HTML & CSS
 
+connectDb(); // FOR CONNECT WITH MONGODB
 
-const flash = require('connect-flash');
-const fileUpload = require("express-fileupload");
-// view engine
-app.set('view engine', 'EJS');
-// connected to monodb
-connectDb();
-//cookies 
-const cookieParser = require('cookie-parser');
-app.use(cookieParser())
-// for file upload
-app.use(fileUpload({useTempFiles: true}));
+app.use(cookieparser()) // FOR SAVE COOKIES
 
- // insert CSS and img
- app.use(express.static('public'));
+app.use(fileUpload({useTempFiles: true})); // FOR FILE UPLOAD
 
+app.use(express.static("public")); // FOR PUBLIC FOLDER
 
-
- app.use(session({
-  cookie: { maxAge: 86400000 },
-  store: new MemoryStore({
-    checkPeriod: 86400000 // prune expired entries every 24h
-  }),
+app.use(session({
+  secret: 'secret',
+  cookie: {maxAge:60000},
   resave: false,
-  secret: 'keyboard cat'
-}))
+  saveUninitialized: false,
 
+}));
 
+app.use(flash()); // FOR FLASH MESSAGES
 
-app.use(flash());
 // DATA GET
 // create application/x-www-form-urlencoded parser
 app.use(express.urlencoded({ extended: false }));
 
-
-  //route load
-  app.use('/', web)
-
-
+// ROUTER LOAD
+app.use("/", web);
 
 
 
@@ -57,20 +45,19 @@ app.use(express.urlencoded({ extended: false }));
 // route hosthost:3000 ('/') /Cannot GET /about
 
 app.get('/', (_req, res) => {
-res.send('Hello World!')
-  })
-  
-app.get('/about', (req, res) => {
-res.send('About page')
-  })
-  app.get('/team1', (req, res) => {
-res.send('team page')
-  })
-  app.get('/login', (req, res) => {
- res.send('login page')
- })
-// server create
-app.listen(port, () => {
-console.log(`server start port  localhost:${port}`);
- })
- 
+  res.send('Hello World!')
+    })
+    
+  app.get('/about', (req, res) => {
+  res.send('About page')
+    })
+    app.get('/team1', (req, res) => {
+  res.send('team page')
+    })
+    app.get('/login', (req, res) => {
+   res.send('login page')
+   })
+  // server create
+  app.listen(port, () => {
+  console.log(`server start port  localhost:${port}`);
+   })
