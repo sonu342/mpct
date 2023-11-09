@@ -32,9 +32,9 @@
           <img src="/images/logo.png" width="120px" class="desk_logo">
         </a>
         <!--Mobile logo-->
-        <a href="/dashboard">
-          <img src="/images/logo.png" class="mob_logo" width="120px">
-        </a>
+        <!-- <a href="/dashboard">
+          <img src="/assets/images/logo.png" class="mob_logo" width="120px">
+        </a> -->
       </a>
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#pn">
         <span class="navbar-toggler-icon"></span>
@@ -42,20 +42,17 @@
 
       <div class="collapse navbar-collapse" id="pn">
         <ul class="navbar-nav ms-auto text-uppercase">
-          <li><a href="/profile" class="nav-link">Profile</a></li>
           <li><a href="/dashboard" class="nav-link">Home</a></li>
           <li><a href="/about" class="nav-link">About</a></li>
-         
+          <li><a href="/profile" class="nav-link">Profile</a></li>
           <li><a href="/contact" class="nav-link">Contact</a></li>
-          <li><a href="/logout" class="nav-link">Logout</a></li>      
-          <!-- <li><a href="#" class="nav-link user" data-bs-toggle="modal" data-bs-target="#aa"> 
-            <h3>
-       
-           </h3></a></li> -->
+          <li><a href="/logout" class="nav-link">Logout</a></li>
+          <li><a href="#" class="nav-link user" data-bs-toggle="modal" data-bs-target="#aa"></a></li>
         </ul>
-<li><a class="btn btn-outline-success" href="/profile"><img src="<%= img.url %>" width="50px"> <br> <%= n %></a></li>
-    
- </div>
+        <li><a class="btn btn-outline-success" href="/profile"><img src="<%= img.url %>" width="50px"> <br> <%= n %></a></li>
+      </div>
+
+    </div>
     <!--container-fluid end -->
   </nav> <!-- Navbar -->
     <!-- ======================================= -->
@@ -71,7 +68,7 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="4000">
-                <img src="/images/banner1.jpg" class="w-100 " height="400px" alt="...">
+            <img src="/images/banner1.jpg" class="w-100 " height="400px" alt="...">
             </div>
             <div class="carousel-item" data-bs-interval="2000">
                 <img src="/images/banner6.jpg" class="w-100 " height="400px" alt="...">
@@ -81,7 +78,7 @@
             </div>
             <div class="carousel-item" data-bs-interval="2000">
                 <img src="/images/banner4.jpg" class="w-100 " height="400px" alt="...">
-            </div>
+          </div>
             <div class="carousel-item" data-bs-interval="2000">
                 <img src="/images/banner5.jpg" class="w-100 " height="400px" alt="...">
             </div>
