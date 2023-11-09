@@ -5,7 +5,9 @@ const port = 3000;
 const web = require('./routes/web');
 const connectDb = require('./db/connectDb');
 const session = require('express-session');
-app.set('trust proxy', 1);
+const MemoryStore = require('memorystore')(session)
+
+
 
 
 const flash = require('connect-flash');
@@ -25,15 +27,14 @@ app.use(fileUpload({useTempFiles: true}));
 
 
 
-
-app.use(session({
-  secret: 'secret',
-  cookie: {maxAge:60000},
+ app.use(session({
+  cookie: { maxAge: 86400000 },
+  store: new MemoryStore({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  }),
   resave: false,
-  maxAge: 1000 * 60 * 15,
-  saveUninitialized: true,
-
-}));
+  secret: 'keyboard cat'
+}))
 
 
 
