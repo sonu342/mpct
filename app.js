@@ -1,10 +1,12 @@
-const express = require("express")
+const express = require("express");
 
 const app = express();
 const port = 3000;
 const web = require('./routes/web');
 const connectDb = require('./db/connectDb');
 const session = require('express-session');
+app.set('trust proxy', 1);
+
 
 const flash = require('connect-flash');
 const fileUpload = require("express-fileupload");
@@ -28,10 +30,10 @@ app.use(session({
   secret: 'secret',
   cookie: {maxAge:60000},
   resave: false,
-  saveUninitialized: false,
+  maxAge: 1000 * 60 * 15,
+  saveUninitialized: true,
 
 }));
-
 
 
 
